@@ -37,7 +37,7 @@ describe("Unit test: Delete Car Controller", () => {
   test("Should be able to delete a car successfully", async () => {
     req.body = body
 
-    await deleteCarController.findOne(req as Request, res as Response)
+    await deleteCarController.delete(req as Request, res as Response)
 
     expect(res.json).toHaveBeenCalled()
     expect(res.json).toHaveBeenCalledTimes(1)

@@ -15,11 +15,15 @@ class EnsureMiddlaware {
     };
   carIdExists = async (
     { params }: Request,
-    _: Response,
+    res: Response,
     next: NextFunction
   ): Promise<void> => {
 
     const id = params.id;
+
+    const foundCar = await prisma.car.findFirst({
+      where: { id },
+    });
     
     if (!id) {
       return next();
@@ -32,6 +36,8 @@ class EnsureMiddlaware {
     if (!car) {
       throw new AppError(404, "Car not found.");
     }
+
+    res.locals = { ...res.locals, foundCar };
 
     return next();
   };

@@ -35,8 +35,6 @@ describe("Unit test: Get Many Car Controller", () => {
   });
   
   test("Should be able to getMany a car successfully", async () => {
-    req.params = body
-
     await getManyCarController.findMany(req as Request, res as Response)
 
     expect(res.json).toHaveBeenCalled()

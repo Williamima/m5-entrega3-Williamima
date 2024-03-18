@@ -6,7 +6,7 @@ import { Car } from "@prisma/client";
 
 
 describe("Unit test: Delete Car Services", () => {
-  const deleteCarServices = new CarServices().findOne;
+  const deleteCarServices = new CarServices().delete;
   
   const carTb = prisma.car;
   
