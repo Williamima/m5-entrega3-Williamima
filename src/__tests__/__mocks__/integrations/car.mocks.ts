@@ -15,8 +15,8 @@ const carCreateMock = {
 };
 
 const carUpdateMock = {
-  name: "Mercedes"
-}
+  name: "Mercedes",
+};
 
 const expectedReturn = {
   id: expect.any(String),
@@ -27,5 +27,4 @@ const expectedReturn = {
   km: carMock.km,
 };
 
-
-export { carMock, carCreateMock, carUpdateMock, expectedReturn }
+export { carMock, carCreateMock, carUpdateMock, expectedReturn };

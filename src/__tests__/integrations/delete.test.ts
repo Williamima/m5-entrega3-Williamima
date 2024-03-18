@@ -1,7 +1,7 @@
 import { Car } from "@prisma/client";
 import { prisma } from "../../database/prisma";
 import { request } from "../utils/request";
-import { carMock } from "../__mocks__/integrations";
+import { carCreateMock } from "../__mocks__/integrations";
 
 describe("Integration Tests: Delete car route.", () => {
   const baseUrl = "/cars";
@@ -9,9 +9,9 @@ describe("Integration Tests: Delete car route.", () => {
 
   let car: Car;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     await carTb.deleteMany();
-    car = await carTb.create({ data: carMock });
+    car = await carTb.create({ data: carCreateMock });
   });
 
   afterEach(async () => {
@@ -24,9 +24,9 @@ describe("Integration Tests: Delete car route.", () => {
 
   test("Should not be able to delete a car - invalidy id", async () => {
     const data = await request
-    .get(`${baseUrl}/invalid-id`)
-    .expect(404)
-    .then((response) => response.body);
+      .get(`${baseUrl}/invalid-id`)
+      .expect(404)
+      .then((response) => response.body);
 
     expect(data.message).toStrictEqual("Car not found.");
   });

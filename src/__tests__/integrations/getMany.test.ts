@@ -1,7 +1,7 @@
 import { Car } from "@prisma/client";
 import { prisma } from "../../database/prisma";
 import { request } from "../utils/request";
-import { carMock, expectedReturn } from "../__mocks__/integrations";
+import { carCreateMock, expectedReturn } from "../__mocks__/integrations";
 
 describe("Integration Tests: Get many cars route.", () => {
   const baseUrl = "/cars";
@@ -9,19 +9,19 @@ describe("Integration Tests: Get many cars route.", () => {
 
   let car: Car;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     await carTb.deleteMany();
-    car = await carTb.create({ data: carMock });
+    car = await carTb.create({ data: carCreateMock });
   });
 
   afterAll(async () => {
     await carTb.deleteMany();
-  })
+  });
 
   test("Should be able to get many cars successfully", async () => {
-      const data = await request.get(baseUrl).expect(200);
+    const data = await request.get(baseUrl).expect(200);
 
-      expect(data.body).toHaveLength(1);
-      expect(data.body).toStrictEqual(Array(expectedReturn));
-  })
+    expect(data.body).toHaveLength(1);
+    expect(data.body).toStrictEqual(Array(expectedReturn));
+  });
 });

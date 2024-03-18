@@ -18,7 +18,7 @@ describe("Unit test: Ensure Validated Id middleware", () => {
     error: "Car not found.",
     model: "car",
     field: "id",
-  }
+  };
 
   beforeEach(async () => {
     next = jest.fn();
@@ -43,7 +43,7 @@ describe("Unit test: Ensure Validated Id middleware", () => {
       ...req.params,
       id: "Invalid-id",
     };
-    
+
     expect(async () => {
       await ensureMiddleware.carIdExists(req as Request, res as Response, next);
     }).rejects.toThrow(paramsIdProps.error);

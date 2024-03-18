@@ -1,30 +1,28 @@
 import { NextFunction, Request, Response } from "express";
-import { AnyZodObject, ZodError } from "zod";
+import { AnyZodObject } from "zod";
 import { prisma } from "../database/prisma";
 import { AppError } from "../errors/AppError";
-import { carCreateSchema } from "../schemas";
 import { container } from "tsyringe";
 
 class EnsureMiddlaware {
   validateBody =
     (schema: AnyZodObject) =>
     (req: Request, _: Response, next: NextFunction): void => {
-        req.body = schema.parse(req.body);
-        
-        return next();
+      req.body = schema.parse(req.body);
+
+      return next();
     };
   carIdExists = async (
     { params }: Request,
     res: Response,
     next: NextFunction
   ): Promise<void> => {
-
     const id = params.id;
 
     const foundCar = await prisma.car.findFirst({
       where: { id },
     });
-    
+
     if (!id) {
       return next();
     }

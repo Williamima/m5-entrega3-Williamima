@@ -7,7 +7,7 @@ import {
   expectedReturn,
 } from "../__mocks__/integrations";
 
-describe("Integration Tests: Get car route.", () => {
+describe("Integration Tests: Patch car route.", () => {
   const baseUrl = "/cars";
   const carTb = prisma.car;
 
@@ -38,11 +38,10 @@ describe("Integration Tests: Get car route.", () => {
   });
 
   test("Should not be able to update a car - invalidy id", async () => {
-    
     const data = await request
-    .patch(`${baseUrl}/invalid-id`)
-    .expect(404)
-    .then((response) => response.body);
+      .patch(`${baseUrl}/invalid-id`)
+      .expect(404)
+      .then((response) => response.body);
 
     expect(data.message).toBe("Car not found.");
   });

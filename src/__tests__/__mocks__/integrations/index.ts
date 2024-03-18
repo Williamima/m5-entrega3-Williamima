@@ -1,3 +1,8 @@
-import { carMock, carCreateMock, expectedReturn, carUpdateMock } from "./car.mocks";
+import {
+  carMock,
+  carCreateMock,
+  expectedReturn,
+  carUpdateMock,
+} from "./car.mocks";
 
-export { carMock, carCreateMock, carUpdateMock, expectedReturn }
+export { carMock, carCreateMock, carUpdateMock, expectedReturn };

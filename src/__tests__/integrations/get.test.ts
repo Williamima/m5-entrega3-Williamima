@@ -9,7 +9,7 @@ describe("Integration Tests: Get car route.", () => {
 
   let car: Car;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     await carTb.deleteMany();
     car = await carTb.create({ data: carCreateMock });
   });
@@ -26,9 +26,9 @@ describe("Integration Tests: Get car route.", () => {
 
   test("Should not be able to get a car - invalidy id", async () => {
     const data = await request
-    .get(`${baseUrl}/invalid-id`)
-    .expect(404)
-    .then((response) => response.body);
+      .get(`${baseUrl}/invalid-id`)
+      .expect(404)
+      .then((response) => response.body);
 
     expect(data.message).toStrictEqual("Car not found.");
   });

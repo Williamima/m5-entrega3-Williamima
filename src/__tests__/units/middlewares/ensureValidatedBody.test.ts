@@ -35,7 +35,7 @@ describe("Unit test: Ensure Validated Body middleware", () => {
     expect(() => {
       validateBodyMiddleware(req as Request, res as Response, next);
     }).toThrow(invalidateBodyMock.expectedValue);
-    
+
     expect(next).toHaveBeenCalledTimes(0);
     expect(next).not.toHaveBeenCalled();
   });

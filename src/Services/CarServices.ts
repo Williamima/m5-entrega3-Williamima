@@ -13,25 +13,26 @@ export class CarServices {
 
   async update(id: string, data: CarUpdate): Promise<Car> {
     const updatedCar = await prisma.car.update({
-      where: { id }, data
-    })
+      where: { id },
+      data,
+    });
 
-    return carSchema.parse(updatedCar)
+    return carSchema.parse(updatedCar);
   }
 
   async delete(id: string): Promise<void> {
-    await prisma.car.delete({ where: { id } })
+    await prisma.car.delete({ where: { id } });
   }
 
   async findOne(id: string): Promise<Car> {
     const car = await prisma.car.findFirst({
       where: { id },
-    })
+    });
 
-    return carSchema.parse(car)
+    return carSchema.parse(car);
   }
 
   async findMany(): Promise<Car[]> {
-    return carSchema.array().parse(await prisma.car.findMany())
+    return carSchema.array().parse(await prisma.car.findMany());
   }
 }
