@@ -21,7 +21,7 @@ export class CarControllers {
     async findOne(req: Request, res: Response): Promise<Response> {
         const { id } = req.params;
         
-        const car = await this.carServices.findOne(Number(id))
+        const car = await this.carServices.findOne(id)
 
         return res.status(200).json(car)
     }
@@ -30,7 +30,7 @@ export class CarControllers {
         const { id } = req.params;
         const data = req.body;
 
-        const car = await this.carServices.update(Number(id), data);
+        const car = await this.carServices.update(id, data);
 
         return res.status(200).json(car)
     }
@@ -38,7 +38,7 @@ export class CarControllers {
     async delete(req: Request, res: Response): Promise<Response> {
         const { id } = req.params;
 
-        await this.carServices.delete(Number(id));
+        await this.carServices.delete(id);
 
         return res.status(204).json()
     }

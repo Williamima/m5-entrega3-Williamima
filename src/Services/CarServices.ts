@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
 import { CarCreate, Car, CarUpdate } from "../interfaces";
-import { carReturnSchema, carSchema } from "../schemas";
+import { carSchema } from "../schemas";
 import { prisma } from "../database/prisma";
 
 @injectable()
@@ -11,7 +11,7 @@ export class CarServices {
     return carSchema.parse(newCar);
   }
 
-  async update(id: number, data: CarUpdate): Promise<Car> {
+  async update(id: string, data: CarUpdate): Promise<Car> {
     const updatedCar = await prisma.car.update({
       where: { id }, data
     })
@@ -19,11 +19,11 @@ export class CarServices {
     return carSchema.parse(updatedCar)
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     await prisma.car.delete({ where: { id } })
   }
 
-  async findOne(id: number): Promise<Car> {
+  async findOne(id: string): Promise<Car> {
     const car = await prisma.car.findFirst({
       where: { id },
     })
