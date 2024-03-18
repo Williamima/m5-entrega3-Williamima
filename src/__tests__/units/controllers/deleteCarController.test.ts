@@ -9,8 +9,6 @@ import { Car } from "@prisma/client";
 import { carCreateMock } from "../../__mocks__";
 
 describe("Unit test: Delete Car Controller", () => {
-  const { body } = getCarControllerMock;
-
   container.registerSingleton("CarServices", CarServices);
   const deleteCarController = container.resolve(CarControllers);
   
@@ -35,7 +33,7 @@ describe("Unit test: Delete Car Controller", () => {
   });
   
   test("Should be able to delete a car successfully", async () => {
-    req.body = body
+    req.params = { id: car.id }
 
     await deleteCarController.delete(req as Request, res as Response)
 

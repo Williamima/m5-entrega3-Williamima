@@ -9,7 +9,7 @@ import { Car } from "@prisma/client";
 import { carCreateMock } from "../../__mocks__";
 
 describe("Unit test: Get Car Controller", () => {
-  const { body, expectedValue } = getCarControllerMock;
+  const { expectedValue } = getCarControllerMock;
 
   container.registerSingleton("CarServices", CarServices);
   const getCarController = container.resolve(CarControllers);
@@ -35,9 +35,9 @@ describe("Unit test: Get Car Controller", () => {
   });
   
   test("Should be able to get a car successfully", async () => {
-    req.body = body
+    req.params = { id: car.id }
 
-    await getCarController.findOne({ body } as Request, res as Response)
+    await getCarController.findOne(req as Request, res as Response)
 
     expect(res.json).toHaveBeenCalled()
     expect(res.json).toHaveBeenCalledTimes(1)

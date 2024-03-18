@@ -9,7 +9,7 @@ import { Car } from "@prisma/client";
 import { carCreateMock } from "../../__mocks__";
 
 describe("Unit test: Get Many Car Controller", () => {
-  const { body, expectedValue } = getCarControllerMock;
+  const { expectedValue } = getCarControllerMock;
 
   container.registerSingleton("CarServices", CarServices);
   const getManyCarController = container.resolve(CarControllers);

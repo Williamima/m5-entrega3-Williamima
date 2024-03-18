@@ -1,12 +1,12 @@
 const patchCarControllersMock = {
     body: {
-        id: expect.any(String),
         name: "Cadilac",
+        description: "automatico",
     },
     expectedValue: {
         id: expect.any(String),
         name: "Cadilac",
-        description: "WRX STI" || null,
+        description: "automatico" || null,
         brand: "Subaru",
         year: 2022,
         km: 1,

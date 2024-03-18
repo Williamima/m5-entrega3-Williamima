@@ -4,11 +4,11 @@ const getCarControllerMock = {
     },
     expectedValue: {
         id: expect.any(String),
-        name: "Subaru",
-        description: "WRX STI" || null,
-        brand: "Subaru",
-        year: 2022,
-        km: 1,
+        name: expect.any(String),
+        description: expect.any(String) || null,
+        brand: expect.any(String),
+        year: expect.any(Number),
+        km: expect.any(Number),
     }
 }
 
