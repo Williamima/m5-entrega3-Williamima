@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import "express-async-errors";
-import express, { json } from "express";
 import "dotenv/config";
+import express, { json } from "express";
 import helmet from "helmet";
 import { carRouter } from "./Routes";
 import { handleError } from "./middlewares";
